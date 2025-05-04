@@ -24,3 +24,9 @@ curl -Uri http://localhost:8080/books `
      -Headers @{ "Content-Type" = "application/json" } `
      -Body (Get-Content -Raw -Path .\body.json)
 ``
+
+5. to find the book by the help of its Id 
+
+``
+curl.exe http://localhost:8080/books/8
+``

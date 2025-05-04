@@ -4,7 +4,7 @@ package main
 import (
 	"net/http"
 	"github.com/gin-gonic/gin"
-// 	"errors"
+	"errors"
  )
 
 type book struct{
@@ -37,9 +37,31 @@ func createBook(c *gin.Context){
 	c.IndentedJSON(http.StatusCreated, newBook)
 }
 
+func bookById(c *gin.Context){
+	id := c.Param("id")
+	book, err := getBookByID(id)
+
+	if err != nil {
+		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Book not found."})
+		return 
+	}
+	c.IndentedJSON(http.StatusOK, book)
+}
+
+func getBookByID(id string) (*book, error){
+
+	for i, b := range books {
+		if b.ID == id {
+			return &books[i], nil
+		}
+	}
+	return nil, errors.New("book not found")
+}
+
 func main() {
    router := gin.Default()
    router.GET("/books", getBooks)
+   router.GET("books/:id", bookById)
    router.POST("/books", createBook)
    router.Run("localhost:8080")
 }
