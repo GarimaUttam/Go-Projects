@@ -15,3 +15,12 @@ go run main.go
 ``
 curl http/localhost:8080/books
 ``
+
+4. to run the create cmd from the termincal using an json file data in the same folder
+
+``
+curl -Uri http://localhost:8080/books `
+     -Method Post `
+     -Headers @{ "Content-Type" = "application/json" } `
+     -Body (Get-Content -Raw -Path .\body.json)
+``
