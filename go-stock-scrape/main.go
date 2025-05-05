@@ -1,9 +1,68 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/gocolly/colly"
+	"log"
 )
 
+type Stock struct{
+company, price, change string
+}
+
 func main() {
-	
+	ticker := []string{
+		"MSFT",
+		"IBM",
+		"GE",
+		"UNP",
+		"COST",
+		"MCD",
+		"V",
+		"WMT",
+		"DIS",
+		"MMM",
+		"INTC",
+		"AXP",
+		"AAPL",
+		"BA",
+		"CSCO",
+		"GS",
+		"JPM",
+		"CRM",
+		"VZ",
+	}
+
+	stocks := []Stock{}
+
+	c := colly.NewCollector()
+
+	c.OnRequest(func(r *colly.Request){
+		fmt.Println("Visiting:", r.URL)
+	})
+
+	c.OnError(func(_ *colly.Response, err error){
+		log.Println("Something went wrong: ", err)
+	})
+
+	// the below function is for the actiul scrapping
+	c.OnHTML("div#quote-header-info", func(e *colly.HTMLElement){
+		stock := Stock{}
+
+		stock.company = e.ChildText("h1")
+		fmt.Println("Company:", stock.company)
+		stock.price = e.ChildText("fin-stramer[data-field='regularMarketPrince']")
+		fmt.Println("Price:", stock.price)
+		stock.change = e.ChildText("fin-streamer[data-fileld='regularMarketChangePercent']")
+		fmt.Println("Change:", stock.change)
+
+		stocks = append(stocks, stock)
+	})
+	c.Wait()
+
+	for _ , t : = range ticker {
+	c.Visit("http://finance.yahoo.com/quote/" + t + "/")
+	}
+
 }
