@@ -30,3 +30,10 @@ curl -Uri http://localhost:8080/books `
 ``
 curl.exe http://localhost:8080/books/8
 ``
+
+
+6. to change the quantity of book - checkout
+
+``
+curl.exe http://localhost:8080/checkout?id=3 --request "PATCH"
+``
