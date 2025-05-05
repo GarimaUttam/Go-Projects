@@ -1,10 +1,12 @@
 package main
 
 import (
+	"encoding/csv"
 	"fmt"
+	"log"
+	"os"
 
 	"github.com/gocolly/colly"
-	"log"
 )
 
 type Stock struct{
@@ -65,4 +67,28 @@ func main() {
 	c.Visit("http://finance.yahoo.com/quote/" + t + "/")
 	}
 
+	fmt.Println(stocks)
+
+	file ,err := os.Create("stocks.csv")
+	if err != nil {
+		log.Fatalln("Failed to create output CSV file", err)
+	}
+	
+	defer file.Close()
+	writer := csv.NewWriter(file)
+	header := []string{
+		"company",
+		"price",
+		"change",
+	}
+	writer.Write(headers)
+	for _, stock := range stocks {
+		record := []string{
+			stock.company,
+			stock.price,
+			stock.change,
+		}
+	}
+	writer.Write(record)
+	defer writer.Flush()
 }
