@@ -39,5 +39,23 @@ func main() {
 		return c.JSON(todos)
 	})
 
+	app.Patch("api/todos/:id/done", func(c *fiber.Ctx) error{
+		id, err := c.ParamsInt("id")
+
+		if err != nil {
+			return c.Status(401).SendString("Invalid id")
+		}
+
+		for i, t := range todos {
+			if t.ID == id {
+				todos[i].Done = true
+				break
+			}
+		}
+
+		return c.JSON(todos)
+
+	})
+
 	log.Fatal(app.Listen(":4000"))
 }
