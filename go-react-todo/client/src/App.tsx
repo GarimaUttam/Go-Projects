@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Box, List } from "@mantine/core";
+import useSWR from "swr";
+import AddTodo from '../components/AddTodo.tsx'; 
+
+export interface Todo {
+  id: number;
+  title: string;
+  body: string;
+  done: boolean;
+}
+
+export const ENDPOINT = "http://localhost:4000";
+
+const fetcher = (url: string) =>
+  fetch(`${ENDPOINT}/${url}`).then((r) => r.json());
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const {data, mutate} = useSWR<Todo[]>('api/todos', fetcher)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Box
+      sx={(theme) => ({
+        padding: "2rem",
+        width: "100%",
+        maxWidth: "40rem", // ✅ correct casing
+        margin: "0 auto",
+      })}
+    >
+      <List spacing="xs" size="sm" mb={12} center>
+        {data?.map((todo) => {
+          return (
+            <List.Item key={`todo_list__${todo.id}`}>{todo.title}</List.Item>
+          );
+        })}
+      </List>
+
+      <AddTodo mutate={mutate} />
+    </Box>
+  );
 }
 
 export default App

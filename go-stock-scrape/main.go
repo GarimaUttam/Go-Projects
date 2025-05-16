@@ -63,7 +63,7 @@ func main() {
 	})
 	c.Wait()
 
-	for _ , t : = range ticker {
+	for _ , t := range ticker {
 	c.Visit("http://finance.yahoo.com/quote/" + t + "/")
 	}
 
@@ -76,7 +76,7 @@ func main() {
 	
 	defer file.Close()
 	writer := csv.NewWriter(file)
-	header := []string{
+	headers := []string{
 		"company",
 		"price",
 		"change",
@@ -88,7 +88,9 @@ func main() {
 			stock.price,
 			stock.change,
 		}
+		writer.Write(record)
+		defer writer.Flush()
 	}
-	writer.Write(record)
-	defer writer.Flush()
+	
+
 }

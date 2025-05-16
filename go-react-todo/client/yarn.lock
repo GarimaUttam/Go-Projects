@@ -467,6 +467,14 @@
     react-textarea-autosize "8.5.9"
     type-fest "^4.27.0"
 
+"@mantine/form@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@mantine/form/-/form-8.0.1.tgz#e4685e463aea68261678cced586e680f62b5f8fc"
+  integrity sha512-lQ94gn/9p60C+tKEW7psQ1tZHod58Q0bXLbRDadRKMwnqBb2WFoIuaQWPDo7ox+PqyOv28dtflgS+Lm95EbBhg==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+    klona "^2.0.6"
+
 "@mantine/hooks@^8.0.1":
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-8.0.1.tgz#b21a84a3b8c9934e72564b2b9d236482cd2098d5"
@@ -509,10 +517,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@primer/octicons-react@^19.15.1":
-  version "19.15.1"
-  resolved "https://registry.yarnpkg.com/@primer/octicons-react/-/octicons-react-19.15.1.tgz#d1407f586e1cb4cc08bedc22ab3444030c970391"
-  integrity sha512-U9g8sj2ON2cKF1jvs3cEfhW51BNkOXjbdi5qPMSY5e4T7KVKR1gK9BZ/gpB4oTqkjoL2dikaWXdnH8vhwyR6lg==
+"@primer/octicons-react@^19.15.2":
+  version "19.15.2"
+  resolved "https://registry.yarnpkg.com/@primer/octicons-react/-/octicons-react-19.15.2.tgz#1fce422b6f3a266af90ac2bce926f76e829c6470"
+  integrity sha512-bVpBKLm5wOdVlwvjCU/uD4JeeVv5iQWpCO0kgkUYX7yzGgV0mf427kdzqKacYMY5rgcbpmiCKAqFe4j6hXz0ow==
 
 "@rollup/rollup-android-arm-eabi@4.40.2":
   version "4.40.2"
@@ -1552,6 +1560,11 @@ keyv@^4.5.4:
   integrity sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==
   dependencies:
     json-buffer "3.0.1"
+
+klona@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.6.tgz#85bffbf819c03b2f53270412420a4555ef882e22"
+  integrity sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==
 
 levn@^0.4.1:
   version "0.4.1"

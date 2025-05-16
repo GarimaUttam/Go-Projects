@@ -11,8 +11,9 @@
   },
   "dependencies": {
     "@mantine/core": "^8.0.1",
+    "@mantine/form": "^8.0.1",
     "@mantine/hooks": "^8.0.1",
-    "@primer/octicons-react": "^19.15.1",
+    "@primer/octicons-react": "^19.15.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "swr": "^2.3.3"
